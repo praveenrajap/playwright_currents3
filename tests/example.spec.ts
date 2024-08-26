@@ -7,24 +7,27 @@ test.use({
   trace: 'retain-on-failure',
 });
 
-// Define 50 tests
-for (let i = 1; i <= 50; i++) {
-  test(`Test ${i}`, async ({ page }, testInfo) => {
+
+
+// Define 25 tests
+for (let i = 1; i <= 25; i++) {
+  test(`Error Category Test ${i}`, async ({ page }, testInfo) => {
     // Randomly skip some tests
-    if (i % 7 === 0) {
-      test.skip(`Skipping Test ${i}`);
+    if (i % 4 === 0) {
+      test.skip(`Skipping Error Category Test ${i}`);
     }
 
-    // Intentionally fail some tests
-    if (i % 5 === 0) {
-      expect(true).toBe(false); // Intentional failure
+    // Intentionally fail some tests based on element interaction
+    if (i % 6 === 0) {
+      await page.goto('https://example.com/non-existent-page');
+      await expect(page).toHaveTitle(/404/); // Intentional failure if the title doesn't match
     }
 
-    // Introduce flaky behavior
-    if (i % 8 === 0) {
+    // Introduce flaky behavior based on random integer condition
+    if (i % 3 === 0) {
       const randomFail = Math.random() > 0.5;
       if (randomFail) {
-        expect(true).toBe(false); // Flaky failure
+        expect(false).toBe(true); // Flaky failure
       }
     }
 
@@ -32,14 +35,14 @@ for (let i = 1; i <= 50; i++) {
     await page.goto('https://example.com');
 
     // Capture screenshot artifact
-    await page.screenshot({ path: `test${i}-screenshot.png` });
+    await page.screenshot({ path: `error-category-test${i}-screenshot.png` });
 
     // Basic interaction
     await expect(page).toHaveTitle(/Example Domain/);
 
     // Tracing interaction
-    if (i === 10) {
-      testInfo.attach('Trace for test 10', {
+    if (i === 12) {
+      testInfo.attach('Trace for Error Category Test 12', {
         body: await page.context().tracing.stop(),
         contentType: 'application/json',
       });
