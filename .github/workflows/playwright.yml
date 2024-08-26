@@ -69,7 +69,7 @@ jobs:
 
       - name: Run Project
         continue-on-error: false
-        working-directory: ./basic
+        
         env:
           CURRENTS_PROJECT_ID: D8CXys
           CURRENTS_RECORD_KEY: XR2F2iffGibB0VBF
