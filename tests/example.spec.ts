@@ -87,3 +87,49 @@ for (let i = 1; i <= 25; i++) {
     }
   });
 }
+
+// Define 25 tests
+for (let i = 1; i <= 25; i++) {
+  test(`Advanced Error Category Test ${i}`, async ({ page }, testInfo) => {
+    // Randomly skip some tests
+    if (i % 4 === 0) {
+      test.skip(`Skipping Advanced Error Category Test ${i}`);
+    }
+
+    // Intentionally fail some tests by triggering a network error
+    if (i % 5 === 0) {
+      await expect(async () => {
+        await page.goto('https://example.invalid-url'); // Invalid URL to trigger a network error
+      }).rejects.toThrow('net::ERR_NAME_NOT_RESOLVED');
+    }
+
+    // Introduce flaky behavior with timeout errors
+    if (i % 3 === 0) {
+      const randomFail = Math.random() > 0.5;
+      if (randomFail) {
+        await expect(async () => {
+          await page.waitForTimeout(1000); // Simulate a delay
+          throw new Error('Timeout exceeded while waiting for an element');
+        }).rejects.toThrow('Timeout exceeded while waiting for an element');
+      }
+    }
+
+    // Example test cases
+    await page.goto('https://example.com');
+
+    // Capture screenshot artifact
+    await page.screenshot({ path: `advanced-error-test${i}-screenshot.png` });
+
+    // Basic interaction
+    await expect(page).toHaveTitle(/Example Domain/);
+
+    // Tracing interaction
+    if (i === 15) {
+      testInfo.attach('Trace for Advanced Error Category Test 15', {
+        body: await page.context().tracing.stop(),
+        contentType: 'application/json',
+      });
+    }
+  });
+}
+
