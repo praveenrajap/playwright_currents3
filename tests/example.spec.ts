@@ -90,7 +90,11 @@ for (let i = 1; i <= 25; i++) {
 
 // Define 25 tests
 for (let i = 1; i <= 25; i++) {
-  test(`Advanced Error Category Test ${i}`, async ({ page }, testInfo) => {
+  test(`Advanced Error Category Test ${i} @Advanced`, async ({ page }, testInfo) => {
+    testInfo.annotations.push({
+      type: "note",
+      description: "This is a note",
+    });
     // Randomly skip some tests
     if (i % 4 === 0) {
       test.skip(`Skipping Advanced Error Category Test ${i}`);
