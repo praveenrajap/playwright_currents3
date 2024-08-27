@@ -74,7 +74,7 @@ jobs:
           CURRENTS_PROJECT_ID: D8CXys
           CURRENTS_RECORD_KEY: XR2F2iffGibB0VBF
         run: |
-          npx pwc --project  --shard=${{ matrix.shard }}/${{ strategy.job-total }}
+          npx pwc --project=chromium  --shard=${{ matrix.shard }}/${{ strategy.job-total }}
 
 
 
