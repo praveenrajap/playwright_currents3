@@ -9,15 +9,15 @@ test.use({
 
 
 
-test('Visual Diff Test', async ({ page }) => {
-  await page.goto('https://playwright.dev');
+// test('Visual Diff Test', async ({ page }) => {
+//   await page.goto('https://playwright.dev');
   
-  // Capture and compare screenshot, forcing it to fail by setting a low maxDiffPixels
-  await expect(page).toHaveScreenshot({ maxDiffPixels: 0 }); // This will likely fail due to slight rendering differences
-});
+//   // Capture and compare screenshot, forcing it to fail by setting a low maxDiffPixels
+//   await expect(page).toHaveScreenshot({ maxDiffPixels: 0 }); // This will likely fail due to slight rendering differences
+// });
 
 // Define 50 tests
-for (let i = 101; i <= 110; i++) {
+for (let i = 401; i <= 410; i++) {
   test(`Test ${i}`, async ({ page }, testInfo) => {
     // Randomly skip some tests
     if (i % 7 === 0) {
