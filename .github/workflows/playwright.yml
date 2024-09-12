@@ -41,7 +41,7 @@ jobs:
         # run 3 copies of the job in parallel
         shard: [1, 2]
 
-    name: "Playwright Tests - pwc"
+    name: "Playwright Tests - pwc"  
     timeout-minutes: 60
     runs-on: ubuntu-22.04
     container: mcr.microsoft.com/playwright:latest
