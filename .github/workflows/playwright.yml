@@ -71,10 +71,10 @@ jobs:
         continue-on-error: false  
         
         env:
-          CURRENTS_PROJECT_ID: D8CXys
-          CURRENTS_RECORD_KEY: XR2F2iffGibB0VBF
+          CURRENTS_PROJECT_ID: aE3CDD
+          CURRENTS_RECORD_KEY: 1abjrR2cNb2B6bAg
         run: |
-          npx pwc-p --project=chromium  --shard=${{ matrix.shard }}/${{ strategy.job-total }} --ci-build-id testid20
+          npx pwc --project=chromium  --shard=${{ matrix.shard }}/${{ strategy.job-total }} --ci-build-id testid20
 
 
 
