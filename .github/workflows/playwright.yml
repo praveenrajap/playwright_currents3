@@ -74,7 +74,7 @@ jobs:
           CURRENTS_PROJECT_ID: aE3CDD
           CURRENTS_RECORD_KEY: 1abjrR2cNb2B6bAg
         run: |
-          npx pwc-p --project=chromium --ci-build-id testid26
+          npx pwc-p --project=chromium --ci-build-id testid27
 
 
      
